@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0d0d" />
+    <meta
+      name="description"
+      content="Пепел над озером — интерактивная психологическая хоррор-история о городе, который помнит всё."
+    />
+    <title>Пепел над озером — интерактивная хоррор-история</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="fog fog-a" aria-hidden="true"></div>
+    <div class="fog fog-b" aria-hidden="true"></div>
+    <div class="weather" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div class="entry" id="entryScreen" role="dialog" aria-modal="true" aria-labelledby="entryTitle">
+      <div class="entry__frame">
+        <div class="entry__case">АРХИВ // ДЕЛО 08–17</div>
+        <div class="entry__content">
+          <p class="entry__kicker">ИНТЕРАКТИВНАЯ ПСИХОЛОГИЧЕСКАЯ ХОРРОР-ИСТОРИЯ</p>
+          <h1 id="entryTitle">Пепел<br />над озером</h1>
+          <p class="entry__lead">
+            Вера возвращается в город, которого нет на картах. В старом радио её зовёт брат,
+            исчезнувший восемь лет назад.
+          </p>
+          <div class="entry__warning">
+            <span class="warning-icon">!</span>
+            <span>Рекомендуются наушники. Есть мерцающий свет и тревожные сцены.</span>
+          </div>
+          <div class="entry__actions">
+            <button class="primary-action" id="startButton" type="button">
+              <span>ВОЙТИ В ТУМАН</span><span aria-hidden="true">→</span>
+            </button>
+            <button class="text-action" id="continueButton" type="button" hidden>
+              ПРОДОЛЖИТЬ С СОХРАНЕНИЯ
+            </button>
+          </div>
+        </div>
+        <div class="entry__meta">
+          <span>03:17</span>
+          <span>54°42′11″ N</span>
+          <span>СИГНАЛ НЕ ОПОЗНАН</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="app" id="app" aria-hidden="true">
+      <header class="topbar">
+        <a class="wordmark" href="#" id="homeLink" aria-label="Пепел над озером, в начало">
+          <span class="wordmark__glyph" aria-hidden="true">◫</span>
+          <span>ПЕПЕЛ НАД ОЗЕРОМ</span>
+        </a>
+        <div class="topbar__case">ДЕЛО <span>№ 08–17</span></div>
+        <div class="topbar__actions">
+          <button class="icon-button" id="soundButton" type="button" aria-pressed="false">
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span id="soundLabel">ЗВУК: ВЫКЛ</span>
+          </button>
+          <button class="icon-button" id="resetButton" type="button">НАЧАТЬ ЗАНОВО</button>
+        </div>
+      </header>
+
+      <main class="story-layout">
+        <aside class="case-panel" aria-label="Состояние истории">
+          <div class="case-panel__index" id="chapterIndex">01</div>
+          <div class="case-panel__rule"></div>
+          <section class="case-data">
+            <p class="micro-label">МЕСТО</p>
+            <p class="case-data__value" id="locationValue">Северный въезд</p>
+          </section>
+          <section class="case-data">
+            <p class="micro-label">ВРЕМЯ</p>
+            <p class="case-data__value" id="timeValue">03:17</p>
+          </section>
+          <section class="case-data">
+            <p class="micro-label">СОСТОЯНИЕ</p>
+            <div class="fear-meter" id="fearMeter" aria-label="Уровень тревоги">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <p class="case-data__value case-data__value--small" id="fearValue">СОБРАНА</p>
+          </section>
+          <section class="inventory">
+            <p class="micro-label">ПРИ СЕБЕ</p>
+            <ul id="inventoryList"></ul>
+          </section>
+        </aside>
+
+        <article class="story" id="storyPanel" aria-live="polite">
+          <div class="story__chapter">
+            <span id="chapterLabel">ПРОЛОГ / НУЛЕВОЙ КИЛОМЕТР</span>
+            <span class="chapter-mark" aria-hidden="true">✣</span>
+          </div>
+          <h2 id="sceneTitle">Знак, которого нет на карте</h2>
+          <div class="story__copy" id="sceneText"></div>
+          <div class="choices" id="choices" aria-label="Выберите действие"></div>
+          <div class="story__footer">
+            <span class="save-state"><i></i> ПРОГРЕСС СОХРАНЯЕТСЯ</span>
+            <span class="key-hint">КЛАВИШИ <kbd>1</kbd>–<kbd>4</kbd></span>
+          </div>
+        </article>
+
+        <aside class="evidence-panel" aria-label="Найденные улики">
+          <div class="coordinates">54.7031° N<br />32.0584° E</div>
+          <div class="evidence-panel__line"></div>
+          <div>
+            <p class="micro-label">УЛИКИ</p>
+            <div class="evidence-count"><strong id="clueCount">0</strong><span>/ 04</span></div>
+          </div>
+          <ol class="evidence-list" id="evidenceList">
+            <li>НЕИЗВЕСТНО</li>
+            <li>НЕИЗВЕСТНО</li>
+            <li>НЕИЗВЕСТНО</li>
+            <li>НЕИЗВЕСТНО</li>
+          </ol>
+          <div class="orientation">ГОРОДСКОЙ АРХИВ / НЕ ЗАКРЫВАТЬ</div>
+        </aside>
+      </main>
+
+      <footer class="broadcast" aria-live="polite">
+        <div class="broadcast__id">
+          <i class="radio-light"></i>
+          <span>FM 87.6</span>
+        </div>
+        <div class="waveform" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <p id="radioMessage">...ш-ш-ш... Ве... ра... ты меня слышишь?</p>
+        <span class="broadcast__status">НЕТ СИГНАЛА</span>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
